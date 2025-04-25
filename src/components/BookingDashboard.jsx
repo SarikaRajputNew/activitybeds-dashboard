@@ -1,28 +1,29 @@
-import React from 'react';
-import { ChevronDown, Plus } from 'lucide-react';
+import React from "react";
+import { ChevronDown, Plus } from "lucide-react";
+import logo from "../assets/logo.png";
 
 const bookings = [
   {
-    id: 'AB_US_001',
-    status: 'Confirmed',
-    icon: '🚗',
-    productType: 'Car',
-    agent: 'ABC Pvt. Ltd.',
-    accountManager: 'Drishti Yadav',
-    source: 'API',
-    date: '03-02-2025',
-    leadPax: 'Rahul Sharma',
-    paxDetails: '2A, 2C (4yrs, 8yrs)',
-    city: 'Melbourne',
+    id: "AB_US_001",
+    status: "Confirmed",
+    icon: "🚗",
+    productType: "Car",
+    agent: "ABC Pvt. Ltd.",
+    accountManager: "Drishti Yadav",
+    source: "API",
+    date: "03-02-2025",
+    leadPax: "Rahul Sharma",
+    paxDetails: "2A, 2C (4yrs, 8yrs)",
+    city: "Melbourne",
   },
   // Add more rows...
 ];
 
 const statusColors = {
-  Confirmed: 'bg-green-500',
-  Cancelled: 'bg-red-500',
-  Travelled: 'bg-blue-500',
-  Vouchered: 'bg-cyan-400',
+  Confirmed: "bg-green-500",
+  Cancelled: "bg-red-500",
+  Travelled: "bg-blue-500",
+  Vouchered: "bg-cyan-400",
 };
 
 export default function BookingDashboard() {
@@ -30,7 +31,10 @@ export default function BookingDashboard() {
     <div className="flex h-screen bg-black text-white">
       {/* Sidebar */}
       <aside className="w-64 bg-[#121212] p-4 flex flex-col">
-        <h1 className="text-xl font-bold mb-6">activitybeds</h1>
+        <h1 className="flex text-xl font-bold mb-6">
+          <img src={logo} alt="activitybeds" className="w-40" />
+          <i class="">{"<<"}</i>
+        </h1>
         <nav className="space-y-4">
           <SidebarLink label="User Management" />
           <SidebarLink label="Booking" active />
@@ -54,13 +58,24 @@ export default function BookingDashboard() {
 
         {/* Filters */}
         <div className="bg-[#2b2b2b] p-4 rounded-xl mb-6 flex flex-wrap gap-4 items-center">
-          {['Agent', 'Supplier', 'Booking ID', 'Lead Pax Name', 'Booking Status'].map((label) => (
-            <select key={label} className="bg-[#121212] text-white px-3 py-2 rounded-lg border border-gray-700">
+          {[
+            "Agent",
+            "Supplier",
+            "Booking ID",
+            "Lead Pax Name",
+            "Booking Status",
+          ].map((label) => (
+            <select
+              key={label}
+              className="bg-[#121212] text-white px-3 py-2 rounded-lg border border-gray-700"
+            >
               <option>{label}</option>
             </select>
           ))}
           <button className="bg-pink-500 px-4 py-2 rounded-xl">Apply</button>
-          <button className="border border-gray-600 px-4 py-2 rounded-xl">Filters</button>
+          <button className="border border-gray-600 px-4 py-2 rounded-xl">
+            Filters
+          </button>
         </div>
 
         {/* Table */}
@@ -82,11 +97,16 @@ export default function BookingDashboard() {
             </thead>
             <tbody>
               {bookings.map((b, i) => (
-                <tr key={i} className="border-t border-gray-800 hover:bg-[#1a1a1a]">
+                <tr
+                  key={i}
+                  className="border-t border-gray-800 hover:bg-[#1a1a1a]"
+                >
                   <td className="p-4 text-center">{b.icon}</td>
                   <td>
                     <div className="font-medium">{b.agent}</div>
-                    <div className="text-sm text-gray-400">Acc. Manager - {b.accountManager}</div>
+                    <div className="text-sm text-gray-400">
+                      Acc. Manager - {b.accountManager}
+                    </div>
                   </td>
                   <td>{b.source}</td>
                   <td className="text-pink-500">{b.id}</td>
@@ -98,7 +118,11 @@ export default function BookingDashboard() {
                   </td>
                   <td>{b.productType}</td>
                   <td>
-                    <span className={`px-2 py-1 rounded-full text-sm ${statusColors[b.status]}`}>
+                    <span
+                      className={`px-2 py-1 rounded-full text-sm ${
+                        statusColors[b.status]
+                      }`}
+                    >
                       {b.status}
                     </span>
                   </td>
@@ -114,7 +138,11 @@ export default function BookingDashboard() {
 }
 
 const SidebarLink = ({ label, active }) => (
-  <button className={`text-left px-3 py-2 rounded-lg ${active ? 'bg-pink-500 text-white' : 'text-gray-400 hover:bg-[#1a1a1a]'}`}>
+  <button
+    className={`text-left px-3 py-2 rounded-lg ${
+      active ? "bg-pink-500 text-white" : "text-gray-400 hover:bg-[#1a1a1a]"
+    }`}
+  >
     {label}
   </button>
 );
